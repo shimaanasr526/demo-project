@@ -1,0 +1,5 @@
+'use client';
+import {useState} from 'react';
+import {ArrowUpRight, Menu, X} from 'lucide-react';
+const links=['Work','About','Services','Process','Contact'];
+export default function Navbar(){const [open,setOpen]=useState(false);return <header className="nav-shell"><nav className="glass-nav" aria-label="Main navigation"><a href="#home" className="wordmark" onClick={()=>setOpen(false)}>SN<span>✳</span></a><div className="desktop-links">{links.map(l=><a key={l} href={'#'+l.toLowerCase()}>{l}</a>)}</div><div className="nav-actions"><span className="language" aria-label="English active; Arabic coming soon">EN <span aria-hidden="true">/</span> <button disabled title="Arabic translation coming soon">AR</button></span><a href="#contact" className="button small nav-cta">Start a project <ArrowUpRight size={15}/></a><button className="menu-button" aria-label={open?'Close menu':'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>{open&&<div className="mobile-menu" id="mobile-menu">{links.map(l=><a key={l} href={'#'+l.toLowerCase()} onClick={()=>setOpen(false)}>{l}</a>)}</div>}</nav></header>}

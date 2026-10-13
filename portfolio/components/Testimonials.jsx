@@ -1,0 +1,7 @@
+'use client';
+import {useState} from 'react';
+import {AnimatePresence,motion} from 'framer-motion';
+import {ArrowLeft,ArrowRight,Quote} from 'lucide-react';
+import {testimonials} from '../lib/content';
+import {SectionTitle} from './Motion';
+export default function Testimonials(){const [index,setIndex]=useState(0);return <section className="section testimonial-section"><div className="container"><SectionTitle eyebrow="WHAT PEOPLE SAY" title={<>Good work is <em>shared work.</em></>}/>{testimonials.length?<div className="testimonial-card" aria-roledescription="carousel" aria-label="Client feedback"><Quote size={35}/><div aria-live="polite"><AnimatePresence mode="wait"><motion.blockquote key={index} initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}}><p>{testimonials[index].quote}</p><footer>{testimonials[index].name}<span>{testimonials[index].role}</span></footer></motion.blockquote></AnimatePresence></div><div className="slider-controls"><button aria-label="Previous testimonial" onClick={()=>setIndex((index-1+testimonials.length)%testimonials.length)}><ArrowLeft/></button><span>{index+1} / {testimonials.length}</span><button aria-label="Next testimonial" onClick={()=>setIndex((index+1)%testimonials.length)}><ArrowRight/></button></div></div>:<div className="testimonial-empty"><Quote size={30}/><p>Client stories, in their own words.</p><span>Approved client feedback will be added here.</span></div>}</div></section>}
